@@ -40,6 +40,41 @@ Behavior* spark;
 #define NUM_CONTROLLERS 8
 Controller* controllers;
 
+void setPattern(Palette* p, Behavior* b)
+{
+	for (int i=0; i<NUM_CONTROLLERS; i++)
+	{
+		controllers[i].setPalette( p );
+		controllers[i].setBehavior( b );
+	}
+}
+
+void update()
+{
+	switch(pattern)
+	{
+	case RAINBOW:
+		setPattern(rainbow, revolver);
+		break;
+		
+	case SOFTRGB:
+		setPattern(softrgb, revolver);
+		break;
+		
+	case OFFMODE:
+	default:
+		setPattern(offmode, bstatic);
+		break;
+	}
+}
+
+// Interrupt Service Routine to swap NeoPixel patterns
+void setPatternISR()
+{
+	pattern = (pattern+1) % NUM_PATTERNS;
+	update();
+}
+
 void setup() 
 {
 	offmode = new PaletteOffMode();
@@ -73,42 +108,4 @@ void loop()
 	}
 	FastLED.show();
 	delay(70);
-}
-
-void update()
-{
-	switch(pattern)
-	{
-	case RAINBOW:
-		for (int i=0; i<NUM_CONTROLLERS; i++)
-		{
-			controllers[i].setPalette( rainbow );
-			controllers[i].setBehavior( revolver );
-		}
-		break;
-		
-	case SOFTRGB:
-		for (int i=0; i<NUM_CONTROLLERS; i++)
-		{
-			controllers[i].setPalette( softrgb );
-			controllers[i].setBehavior( revolver );
-		}
-		break;
-		
-	case OFFMODE:
-	default:
-		for (int i=0; i<NUM_CONTROLLERS; i++)
-		{
-			controllers[i].setPalette( offmode );
-			controllers[i].setBehavior( bstatic );
-		}
-		break;
-	}
-}
-
-// Interrupt Service Routine to swap NeoPixel patterns
-void setPatternISR()
-{
-	pattern = (pattern+1) % NUM_PATTERNS;
-	update();
 }
