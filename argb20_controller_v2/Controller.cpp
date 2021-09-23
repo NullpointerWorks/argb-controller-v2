@@ -29,5 +29,5 @@ CRGB* Controller::getLEDS()
 
 void Controller::doNextStep()
 {
-	behave->doBehaviour(palette, leds);
+	behave->setPattern(palette, leds);
 }

@@ -8,7 +8,8 @@ class BehaviorStatic : public Behavior
 public:
 	BehaviorStatic();
 	void setOffset(uint8_t);
-	void doBehaviour(Palette*, CRGB*);
+	void setPattern(Palette*, CRGB*);
+	void doStep();
 };
 
 #endif

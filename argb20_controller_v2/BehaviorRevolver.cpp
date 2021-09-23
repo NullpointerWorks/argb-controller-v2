@@ -11,7 +11,7 @@ void BehaviorRevolver::setOffset(uint8_t o)
 	offset = o;
 }
 
-void BehaviorRevolver::doBehaviour(Palette* pal, CRGB* leds)
+void BehaviorRevolver::setPattern(Palette* pal, CRGB* leds)
 {
 	int i = 0;
 	for (; i<20; i++)
@@ -19,5 +19,9 @@ void BehaviorRevolver::doBehaviour(Palette* pal, CRGB* leds)
 		int a = (i + strip_cycle + offset) % 20;
 		*(leds + i) = *pal->getColor(a);
 	}
+}
+
+void BehaviorRevolver::doStep()
+{
 	strip_cycle = (1 + strip_cycle) % 20;
 }

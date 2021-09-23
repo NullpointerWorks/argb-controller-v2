@@ -4,12 +4,11 @@
 #include "PaletteOffMode.hpp"
 #include "PaletteRainbow.hpp"
 #include "PaletteSoftRainbow.hpp"
-
 #include "Behavior.hpp"
 #include "BehaviorRevolver.hpp"
 #include "BehaviorSpark.hpp"
 #include "BehaviorStatic.hpp"
-
+#include "BehaviorRunner.hpp"
 #include "Controller.hpp"
 
 // pin configuration
@@ -35,6 +34,7 @@ Palette* softrgb;
 Behavior* bstatic;
 Behavior* revolver;
 Behavior* spark;
+Behavior* runner;
 
 // RGB controllers
 #define NUM_CONTROLLERS 8
@@ -49,7 +49,7 @@ void setPattern(Palette* p, Behavior* b)
 	}
 }
 
-void update()
+void doUpdate(uint8_t pattern)
 {
 	switch(pattern)
 	{
@@ -58,7 +58,7 @@ void update()
 		break;
 		
 	case SOFTRGB:
-		setPattern(softrgb, revolver);
+		setPattern(softrgb, runner);
 		break;
 		
 	case OFFMODE:
@@ -69,23 +69,25 @@ void update()
 }
 
 // Interrupt Service Routine to swap NeoPixel patterns
-void setPatternISR()
+void doPatternISR()
 {
 	pattern = (pattern+1) % NUM_PATTERNS;
-	update();
+	doUpdate(pattern);
 }
 
 void setup() 
 {
-	offmode = new PaletteOffMode();
-	rainbow = new PaletteRainbow();
-	softrgb = new PaletteSoftRainbow();
+	offmode 	= new PaletteOffMode();
+	rainbow 	= new PaletteRainbow();
+	softrgb 	= new PaletteSoftRainbow();
 	
-	bstatic = new BehaviorStatic();
-	revolver = new BehaviorRevolver();
-	spark = new BehaviorSpark();
+	bstatic 	= new BehaviorStatic();
+	revolver 	= new BehaviorRevolver();
+	spark 		= new BehaviorSpark();
+	runner 		= new BehaviorRunner();
 	
 	controllers = new Controller[NUM_CONTROLLERS];
+	
 	FastLED.addLeds<NEOPIXEL, ARGB_1>(controllers[0].getLEDS(), 20);
 	FastLED.addLeds<NEOPIXEL, ARGB_2>(controllers[1].getLEDS(), 20);
 	FastLED.addLeds<NEOPIXEL, ARGB_3>(controllers[2].getLEDS(), 20);
@@ -95,13 +97,14 @@ void setup()
 	FastLED.addLeds<NEOPIXEL, ARGB_7>(controllers[6].getLEDS(), 20);
 	FastLED.addLeds<NEOPIXEL, ARGB_8>(controllers[7].getLEDS(), 20);
 	
-	attachInterrupt( digitalPinToInterrupt(SWITCH_P), setPatternISR, FALLING );
-	update();
-	delay(100); // pre-charge delay
+	attachInterrupt( digitalPinToInterrupt(SWITCH_P), doPatternISR, FALLING );
+	doUpdate(OFFMODE);
+	delay(200); // pre-charge delay
 }
 
 void loop() 
 {
+	
 	for (int i=0; i<NUM_CONTROLLERS; i++)
 	{
 		controllers[i].doNextStep();

@@ -1,15 +1,15 @@
 #include "Behavior.hpp"
 
-#ifndef _BEHAVIOR_REVOLVER_HPP_
-#define _BEHAVIOR_REVOLVER_HPP_
+#ifndef _BEHAVIOR_RUNNER_HPP_
+#define _BEHAVIOR_RUNNER_HPP_
 
-class BehaviorRevolver : public Behavior
+class BehaviorRunner : public Behavior
 {
 	uint8_t offset;
 	uint8_t strip_cycle;
 	
 public:
-	BehaviorRevolver();
+	BehaviorRunner();
 	void setOffset(uint8_t);
 	void setPattern(Palette*, CRGB*);
 	void doStep();

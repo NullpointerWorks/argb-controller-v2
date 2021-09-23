@@ -7,7 +7,6 @@
 
 class Controller
 {
-private:
 	CRGB* leds;
 	Behavior* behave = nullptr;
 	Palette* palette = nullptr;
@@ -20,7 +19,8 @@ public:
 	void setPalette(Palette*);
 	
 	CRGB* getLEDS();
-	void doNextStep();
+	void doStep();
+	void doBehavior();
 };
 
 #endif
