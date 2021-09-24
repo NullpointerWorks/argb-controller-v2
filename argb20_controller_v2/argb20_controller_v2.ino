@@ -69,7 +69,7 @@ void doUpdate(uint8_t pattern)
 }
 
 // Interrupt Service Routine to swap NeoPixel patterns
-void doPatternISR()
+void doInterrupt()
 {
 	pattern = (pattern+1) % NUM_PATTERNS;
 	doUpdate(pattern);
@@ -97,14 +97,13 @@ void setup()
 	FastLED.addLeds<NEOPIXEL, ARGB_7>(controllers[6].getLEDS(), 20);
 	FastLED.addLeds<NEOPIXEL, ARGB_8>(controllers[7].getLEDS(), 20);
 	
-	attachInterrupt( digitalPinToInterrupt(SWITCH_P), doPatternISR, FALLING );
+	attachInterrupt( digitalPinToInterrupt(SWITCH_P), doInterrupt, FALLING );
 	doUpdate(OFFMODE);
 	delay(200); // pre-charge delay
 }
 
-void loop() 
+void loop()
 {
-	
 	for (int i=0; i<NUM_CONTROLLERS; i++)
 	{
 		controllers[i].doNextStep();
