@@ -3,7 +3,6 @@
 BehaviorRunner::BehaviorRunner()
 {
 	offset = 0;
-	strip_cycle = 0;
 }
 
 void BehaviorRunner::setOffset(uint8_t o)
@@ -11,7 +10,7 @@ void BehaviorRunner::setOffset(uint8_t o)
 	offset = o;
 }
 
-void BehaviorRunner::setPattern(Palette* pal, CRGB* leds)
+void BehaviorRunner::setPattern(Palette* pal, CRGB* leds, uint8_t* state)
 {
 	int i = 0;
 	for (; i<20; i++)
@@ -19,11 +18,8 @@ void BehaviorRunner::setPattern(Palette* pal, CRGB* leds)
 		leds[i].nscale8( 128 ); // devide by 2
 	}
 	
-	int a = (strip_cycle + offset) % 20;
+	int a = (*state + offset) % 20;
 	*(leds + a) = *pal->getColor(a);
-}
-
-void BehaviorRunner::doStep()
-{
-	strip_cycle = (1 + strip_cycle) % 20;
+	
+	*state = (1 + *state) % 20;
 }

@@ -3,6 +3,7 @@
 Controller::Controller()
 {
 	leds = new CRGB[20];
+	state = 0;
 }
 
 Controller::~Controller()
@@ -29,5 +30,5 @@ CRGB* Controller::getLEDS()
 
 void Controller::doNextStep()
 {
-	behave->setPattern(palette, leds);
+	behave->setPattern(palette, leds, &state);
 }
