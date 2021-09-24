@@ -15,6 +15,7 @@ Controller::~Controller()
 
 void Controller::setBehavior(Behavior* beh)
 {
+	state = 0;
 	behave = beh;
 }
 
