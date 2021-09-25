@@ -10,6 +10,11 @@ PaletteOffMode::~PaletteOffMode()
 	delete palette;
 }
 
+int PaletteOffMode::getSize()
+{
+	return 1;
+}
+
 CRGB* PaletteOffMode::getColor(int index)
 {
 	return palette;

@@ -10,7 +10,7 @@ class BehaviorRevolver : public Behavior
 public:
 	BehaviorRevolver();
 	void setOffset(uint8_t);
-	void setPattern(Palette*, CRGB*, uint8_t*);
+	uint8_t setPattern(Palette*, CRGB*, uint8_t);
 };
 
 #endif

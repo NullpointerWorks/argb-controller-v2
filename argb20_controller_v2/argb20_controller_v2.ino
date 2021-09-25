@@ -58,7 +58,7 @@ void doUpdate(uint8_t pattern)
 		break;
 		
 	case SOFTRGB:
-		setPattern(softrgb, runner);
+		setPattern(softrgb, spark);
 		break;
 		
 	case OFFMODE:

@@ -19,9 +19,8 @@ public:
 	
 	void setBehavior(Behavior*);
 	void setPalette(Palette*);
-	
-	CRGB* getLEDS();
 	void doNextStep();
+	CRGB* getLEDS();
 };
 
 #endif

@@ -17,7 +17,7 @@ void BehaviorSpark::setPickerDelay(uint8_t pd)
 	pick_delay = pd;
 }
 
-void BehaviorSpark::setPattern(Palette* pal, CRGB* leds, uint8_t* state)
+uint8_t BehaviorSpark::setPattern(Palette* pal, CRGB* leds, uint8_t state)
 {
 	int i = 0;
 	for (; i<20; i++)
@@ -34,4 +34,6 @@ void BehaviorSpark::setPattern(Palette* pal, CRGB* leds, uint8_t* state)
 		uint8_t pick = random(0,20);
 		leds[select] = *pal->getColor(pick);
 	}
+	
+	return 0;
 }

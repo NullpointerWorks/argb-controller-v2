@@ -11,6 +11,7 @@ class PaletteSoftRainbow : public Palette
 public:
 	PaletteSoftRainbow();
 	~PaletteSoftRainbow();
+	int getSize();
 	CRGB* getColor(int);
 };
 

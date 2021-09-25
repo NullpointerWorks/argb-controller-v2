@@ -24,12 +24,12 @@ void Controller::setPalette(Palette* pal)
 	palette = pal;
 }
 
+void Controller::doNextStep()
+{
+	state = behave->setPattern(palette, leds, state);
+}
+
 CRGB* Controller::getLEDS()
 {
 	return leds;
-}
-
-void Controller::doNextStep()
-{
-	behave->setPattern(palette, leds, &state);
 }
