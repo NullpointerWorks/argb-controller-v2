@@ -6,7 +6,6 @@
 #include "PaletteSoftRainbow.hpp"
 #include "Behavior.hpp"
 #include "BehaviorRevolver.hpp"
-#include "BehaviorSpark.hpp"
 #include "BehaviorStatic.hpp"
 #include "BehaviorRunner.hpp"
 #include "Controller.hpp"
@@ -33,7 +32,6 @@ Palette* rainbow;
 Palette* softrgb;
 Behavior* bstatic;
 Behavior* revolver;
-Behavior* spark;
 Behavior* runner;
 
 // RGB controllers
@@ -58,7 +56,7 @@ void doUpdate(uint8_t pattern)
 		break;
 		
 	case SOFTRGB:
-		setPattern(softrgb, spark);
+		setPattern(softrgb, runner);
 		break;
 		
 	case OFFMODE:
@@ -83,7 +81,6 @@ void setup()
 	
 	bstatic 	= new BehaviorStatic();
 	revolver 	= new BehaviorRevolver();
-	spark 		= new BehaviorSpark();
 	runner 		= new BehaviorRunner();
 	
 	controllers = new Controller[NUM_CONTROLLERS];

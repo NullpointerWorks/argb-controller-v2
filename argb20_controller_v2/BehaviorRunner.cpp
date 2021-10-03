@@ -21,5 +21,5 @@ uint8_t BehaviorRunner::setPattern(Palette* pal, CRGB* leds, uint8_t state)
 	int a = (state + offset) % 20;
 	*(leds + a) = *pal->getColor(a);
 	
-	return (1 + state) % 20;
+	return (state + 1) % 20;
 }
