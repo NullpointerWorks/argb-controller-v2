@@ -20,24 +20,19 @@ PaletteRainbow::PaletteRainbow()
 	setRGB(&palette[9], 129, 0, 195);
 	setRGB(&palette[10], 73, 0, 231);
 	setRGB(&palette[11], 17, 0, 251);
-	setRGB(&palette[12], 0, 0, 255);
+	setRGB(&palette[12], 0, 0, 254);
 	setRGB(&palette[13], 0, 54, 239);
 	setRGB(&palette[14], 0, 111, 208);
 	setRGB(&palette[15], 0, 164, 164);
 	setRGB(&palette[16], 0, 208, 111);
 	setRGB(&palette[17], 0, 239, 54);
-	setRGB(&palette[18], 0, 255, 0);
+	setRGB(&palette[18], 0, 254, 0);
 	setRGB(&palette[19], 17, 251, 0);
 }
 
 PaletteRainbow::~PaletteRainbow()
 {
 	delete[] palette;
-}
-
-int PaletteRainbow::getSize()
-{
-	return 20;
 }
 
 CRGB* PaletteRainbow::getColor(int index)

@@ -11,7 +11,6 @@ class PaletteRainbow : public Palette
 public:
 	PaletteRainbow();
 	~PaletteRainbow();
-	int getSize();
 	CRGB* getColor(int);
 };
 

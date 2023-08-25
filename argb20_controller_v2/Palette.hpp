@@ -7,7 +7,6 @@ class Palette
 {
 public:
 	virtual ~Palette() {};
-	virtual int getSize();
 	virtual CRGB* getColor(int);
 };
 

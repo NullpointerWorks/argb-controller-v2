@@ -7,9 +7,8 @@
 
 class Controller
 {
+private:
 	CRGB* leds;
-	uint8_t state;
-	
 	Behavior* behave = nullptr;
 	Palette* palette = nullptr;
 	
@@ -19,8 +18,9 @@ public:
 	
 	void setBehavior(Behavior*);
 	void setPalette(Palette*);
-	void doNextStep();
+	
 	CRGB* getLEDS();
+	void doNextStep();
 };
 
 #endif

@@ -11,7 +11,6 @@ class PaletteOffMode : public Palette
 public:
 	PaletteOffMode();
 	~PaletteOffMode();
-	int getSize();
 	CRGB* getColor(int);
 };
 

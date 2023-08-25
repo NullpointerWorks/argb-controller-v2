@@ -35,11 +35,6 @@ PaletteSoftRainbow::~PaletteSoftRainbow()
 	delete[] palette;
 }
 
-int PaletteSoftRainbow::getSize()
-{
-	return 20;
-}
-
 CRGB* PaletteSoftRainbow::getColor(int index)
 {
 	if (index<0) {index=0;}

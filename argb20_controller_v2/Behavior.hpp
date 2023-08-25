@@ -9,7 +9,7 @@ class Behavior
 public:
 	virtual ~Behavior() {}
 	virtual void setOffset(uint8_t);
-	virtual uint8_t setPattern(Palette*, CRGB*, uint8_t);
+	virtual void doBehaviour(Palette*, CRGB*);
 };
 
 #endif
